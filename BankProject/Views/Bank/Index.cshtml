@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Customer>
+
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                        <a asp-controller="Bank" asp-action="Create" class="btn btn-info mt-2">+ Create</a>
+                        <table cellpadding="3" class="table-responsive table-borderless mt-2 p-3 w-100 text-center">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Balance</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="10%">
+                                            @item.Id
+                                        </td>
+                                        <td width="10%">
+                                            @item.CustName
+                                        </td>
+                                        <td width="10%">
+                                            @item.CustAddress
+                                        </td>
+                                        <td width="10%">
+                                            @item.CustAge
+                                        </td>
+                                        <td width="10%">
+                                            @item.CustGender
+                                        </td>
+                                        <td width="10%">
+                                            @item.CustBlnc
+                                        </td>
+                                        <td width="40%">
+                                            <a asp-controller="Bank" asp-action="Update" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                                            <a asp-controller="Bank" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure to delete the Customer')" class="btn btn-danger">Delete</a>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>

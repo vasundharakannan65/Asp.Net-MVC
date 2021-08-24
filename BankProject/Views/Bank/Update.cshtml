@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{  
+    ViewData["Title"] = "Update";
+}
+
+@model Customer
+
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form asp-action="Update" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="panel center-div mt-3">
+                <div class="panel-header">
+                    <h5 class="panel-title text-center p-2">Edit Customer</h5>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="CustName"></label>
+                                <div class="col-sm-12">
+                                    <input type="text" asp-for="CustName" class="form-control" readonly />
+                                    <span asp-validation-for="CustName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="CustAddress"></label>
+                                <div class="col-sm-12">
+                                    <input type="text" asp-for="CustAddress" class="form-control" />
+                                    <span asp-validation-for="CustAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="CustAge"></label>
+                                <div class="col-sm-12">
+                                    <input type="text" asp-for="CustAge" readonly class="form-control"/>
+                                    <span asp-validation-for="CustAge" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="CustGender"></label>
+                                <div class="col-sm-12">
+                                    <input type="text" asp-for="CustGender" class="form-control" readonly />
+                                    <span asp-validation-for="CustGender" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="CustBlnc"></label>
+                                <div class="col-sm-12">
+                                    <input type="text" asp-for="CustBlnc" class="form-control" />
+                                    <span asp-validation-for="CustBlnc" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer center-div">
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-info" onclick="return alert('Successfully updated!')" value="Update" />
+                                    </div>
+                                    <div class="col-6">
+                                        <a asp-action="Index" class="btn btn-info">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
