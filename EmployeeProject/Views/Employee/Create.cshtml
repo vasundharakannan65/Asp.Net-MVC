@@ -39,12 +39,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label asp-for="DeptId"></label>
+                                    <label asp-for="Department.DeptId"></label>
                                     <div class="col-sm-12">
-                                        <select asp-for="DeptId" class="form-control" asp-items="@ViewBag.myDropdown">
+                                        <select asp-for="Department.DeptId" class="form-control" asp-items="@ViewBag.myDropdown">
                                             <option selected="">---- Select ----</option>
                                         </select>
-                                        <span asp-validation-for="DeptId" class="text-danger"></span>
+                                        <span asp-validation-for="Department.DeptId" class="text-danger"></span>
                                     </div>
                                 </div>
 

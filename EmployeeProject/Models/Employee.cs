@@ -37,7 +37,8 @@ namespace EmployeeProject.Models
 
         public char Status { get; set; } = 'A';
 
-        [ForeignKey("Dept Id")]
-        public int DeptId { get; set; }
+        //[ForeignKey]
+        //public int DeptId { get; set; }
+        public Department Department { get; set; }
     }
 }
