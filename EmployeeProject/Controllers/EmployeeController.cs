@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,33 +20,17 @@ namespace EmployeeProject.Controllers
             _db = db;
         }
 
-        public IActionResult Index(int page)
-        {
-            IEnumerable<Employee> employees = _db.Employees.Where(x => x.Status == 'A').ToList();
-
-            //paging
-            page = 1;
-            var paginatedResult = PaginatedResult(employees.ToList(), page, 10);
-
-            return View(paginatedResult);
-        }
-
         [HttpGet]
-        public IActionResult Index(string sortOrder,string searchString)
+        public IActionResult Index(string sortOrder,string searchString, int page = 1)
         {
             //sorting
-            var empList = from e in _db.Employees
-                          where e.Status == 'A'
-                          select e;
+            var empList = _db.Employees.Include("Dept").Where(e => e.Status == 'A');
 
             ViewData["IdSortParam"] = sortOrder == "idDesc" ? "idAsc" : "idDesc";
             ViewData["NameSortParam"] = sortOrder == "nameDesc" ? "nameAsc" : "nameDesc";
             ViewData["DesignationSortParam"] = sortOrder == "designationDesc" ? "designationAsc" : "designationDesc";
             ViewData["DeptNameSortParam"] = sortOrder == "deptNameDesc" ? "deptNameAsc" : "deptNameDesc";
             ViewData["DateSortParam"] = sortOrder == "dateDesc" ? "dateAsc" : "dateDesc";
-
-            var deptList = from d in _db.Departments
-                           select d;
 
 
             switch (sortOrder)
@@ -69,8 +54,10 @@ namespace EmployeeProject.Controllers
                     empList = empList.OrderByDescending(x => x.EmpDesignation);
                     break;
                 case "deptNameAsc":
+                    empList = empList.Include("Dept").OrderBy(d => d.Dept.DeptName);
                     break;
                 case "deptNameDesc":
+                    empList = empList.Include("Dept").OrderByDescending(d => d.Dept.DeptName);
                     break;
                 case "Date":
                     empList = empList.OrderBy(x => x.HireDate);
@@ -91,8 +78,17 @@ namespace EmployeeProject.Controllers
             {
                 empList = empList.Where(s => s.EmpName.ToLower().Contains(searchString.ToLower()));
             }
- 
-            return View(empList);
+
+            //paging
+            var paginatedResult = PaginatedResult(empList.ToList(), page, 10);
+
+            dynamic obj = new ExpandoObject();
+
+            obj.empList = paginatedResult;
+
+            ViewBag.Data = obj;
+
+            return View();
 
         }
         
@@ -108,6 +104,7 @@ namespace EmployeeProject.Controllers
             ViewBag.myDropdown = department;
 
             return View();
+
         }
 
         [HttpPost]

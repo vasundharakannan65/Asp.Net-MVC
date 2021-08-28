@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeProject.Migrations
 {
-    public partial class EmpRelation1 : Migration
+    public partial class Relationship2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,21 +29,33 @@ namespace EmployeeProject.Migrations
                     EmpName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmpDesignation = table.Column<int>(type: "int", nullable: false),
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     DeptId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmpId);
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments_DeptId",
+                        column: x => x.DeptId,
+                        principalTable: "Departments",
+                        principalColumn: "DeptId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_DeptId",
+                table: "Employees",
+                column: "DeptId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Departments");
         }
     }
 }

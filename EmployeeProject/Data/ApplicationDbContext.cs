@@ -23,6 +23,7 @@ namespace EmployeeProject.Data
                 if(entry.State == EntityState.Deleted)
                 {
                     entry.State = EntityState.Modified;
+                    
                     entity.GetType().GetProperty("Status").SetValue(entity, 'D');
                 } 
 

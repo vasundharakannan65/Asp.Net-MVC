@@ -14,6 +14,7 @@ namespace EmployeeProject.Models
         Admin = 3,
         CEO = 4
     }
+
     public class Employee
     {
         //Id,  Name,  Designation, Department ID, Hire Date
@@ -32,13 +33,16 @@ namespace EmployeeProject.Models
 
         [Required]
         [Display(Name = "Hire Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime HireDate { get; set; }
 
         public char Status { get; set; } = 'A';
 
-        //[ForeignKey]
-        //public int DeptId { get; set; }
-        public Department Department { get; set; }
+
+        [Required(ErrorMessage = "The Department ID is required")]
+        [ForeignKey("Department")]
+        public int DeptId { get; set; }
+
+
+        public Department Dept { get; set; }
     }
 }

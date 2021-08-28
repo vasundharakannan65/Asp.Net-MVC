@@ -43,7 +43,7 @@ namespace EmployeeProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DepartmentDeptId")
+                    b.Property<int>("DeptId")
                         .HasColumnType("int");
 
                     b.Property<int>("EmpDesignation")
@@ -62,18 +62,25 @@ namespace EmployeeProject.Migrations
 
                     b.HasKey("EmpId");
 
-                    b.HasIndex("DepartmentDeptId");
+                    b.HasIndex("DeptId");
 
                     b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("EmployeeProject.Models.Employee", b =>
                 {
-                    b.HasOne("EmployeeProject.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentDeptId");
+                    b.HasOne("EmployeeProject.Models.Department", "Dept")
+                        .WithMany("Emp")
+                        .HasForeignKey("DeptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Department");
+                    b.Navigation("Dept");
+                });
+
+            modelBuilder.Entity("EmployeeProject.Models.Department", b =>
+                {
+                    b.Navigation("Emp");
                 });
 #pragma warning restore 612, 618
         }

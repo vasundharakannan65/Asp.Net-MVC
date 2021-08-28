@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210825180656_EmpRelation4")]
-    partial class EmpRelation4
+    [Migration("20210828091208_Relationship2")]
+    partial class Relationship2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,25 @@ namespace EmployeeProject.Migrations
 
                     b.HasKey("EmpId");
 
+                    b.HasIndex("DeptId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("EmployeeProject.Models.Employee", b =>
+                {
+                    b.HasOne("EmployeeProject.Models.Department", "Dept")
+                        .WithMany("Emp")
+                        .HasForeignKey("DeptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dept");
+                });
+
+            modelBuilder.Entity("EmployeeProject.Models.Department", b =>
+                {
+                    b.Navigation("Emp");
                 });
 #pragma warning restore 612, 618
         }

@@ -76,7 +76,8 @@ namespace EmployeeProject.Controllers
 
         public IActionResult Delete(int? id)
         {
-            var department = _db.Departments.Find(id);
+            var department = _db.Departments.FirstOrDefault(x => x.DeptId == id);
+
             if (department == null)
             {
                 return NotFound();

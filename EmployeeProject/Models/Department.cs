@@ -17,5 +17,7 @@ namespace EmployeeProject.Models
         [Display(Name = "Department Name")]
         [StringLength(50)]
         public string DeptName { get; set; }
+
+        public ICollection<Employee> Emp { get; set; }
     }
 }

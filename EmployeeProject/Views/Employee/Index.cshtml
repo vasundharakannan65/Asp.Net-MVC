@@ -50,12 +50,15 @@
                                 @Html.DisplayNameFor(model => model.HireDate)
                             </a>
                         </th>
-                        <th>Department Name</th>
+                        <th><a asp-action="Index" asp-route-sortOrder="@ViewData["DeptNameSortParam"]">
+                                @Html.DisplayNameFor(model => model.Dept.DeptName)
+                            </a>
+                        </th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.Data.empList)
                     {
                         <tr>
                             <td width="10%">
@@ -71,11 +74,12 @@
                                 @item.HireDate.ToShortDateString()
                             </td>
                             <td width="20%">
-                                @item.Department.DeptId
+                                @item.Dept.DeptName
                             </td>
                             <td width="30%">
                                 <a asp-controller="Employee" asp-action="Update" asp-route-id="@item.EmpId" class="btn btn-info">Edit</a>
-                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.EmpId" onclick="return confirm('Are you sure to delete the Employee')" class="btn btn-danger">Delete</a>
+                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.EmpId" onclick="return confirm('Are you sure to delete the Employee')" 
+                                   class="btn btn-danger">Delete</a>
                             </td>
 
                         </tr>
