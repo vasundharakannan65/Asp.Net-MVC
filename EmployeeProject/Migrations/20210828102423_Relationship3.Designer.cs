@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210828091208_Relationship2")]
-    partial class Relationship2
+    [Migration("20210828102423_Relationship3")]
+    partial class Relationship3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

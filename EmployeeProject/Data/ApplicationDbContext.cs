@@ -20,10 +20,9 @@ namespace EmployeeProject.Data
             {
                 var entity = entry.Entity;
 
-                if(entry.State == EntityState.Deleted)
+                if(entry.State == EntityState.Deleted && entity is Employee)
                 {
                     entry.State = EntityState.Modified;
-                    
                     entity.GetType().GetProperty("Status").SetValue(entity, 'D');
                 } 
 
