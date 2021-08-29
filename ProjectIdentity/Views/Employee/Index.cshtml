@@ -1,0 +1,74 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Employee>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col">
+            <a asp-controller="Employee" asp-action="Create" class="btn btn-info mt-2">+ Create</a>
+
+            <form asp-action="Index" method="get">
+                <div class="form-actions col-md-4">
+                    <p>
+                        Search: <input type="text" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                        <input type="submit" value="Search" class="btn btn-info mt-2" />
+                        <a asp-action="Index" class="btn btn-info mt-2">Back to Full List</a>
+                    </p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col">
+            <table cellpadding="5" class="table-responsive table-striped mt-2 p-3 text-center" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Skill Name</th>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Employee Designation</th>
+                        <th>Hire Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Data.empList)
+                    {
+                        <tr>
+                            <td width="10%">
+                                @item.Skills
+                            </td>
+                            <td width="15%">
+                                @item.EmpId
+                            </td>
+                            <td width="15%">
+                                @item.EmpName
+                            </td>
+                            <td width="10%">
+                                @item.EmpDesignation
+                            </td>
+                            <td width="20%">
+                                @item.HireDate.ToShortDateString()
+                            </td>
+                            <td width="30%">
+                                <a asp-controller="Employee" asp-action="Update" asp-route-id="@item.EmpId" class="btn btn-info">Edit</a>
+                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.EmpId" onclick="return confirm('Are you sure to delete the Employee')" 
+                                   class="btn btn-danger">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Pagination", 10)

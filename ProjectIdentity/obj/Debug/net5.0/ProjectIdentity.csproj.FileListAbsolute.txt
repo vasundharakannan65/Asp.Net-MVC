@@ -79,3 +79,10 @@ C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Account\Lo
 C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Skill\Create.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Skill\Index.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Skill\Update.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Employee\Create.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Employee\Index.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Employee\Update.cshtml.g.cs
+C:\Users\Hp\source\repos\ProjectIdentity\obj\Debug\net5.0\Razor\Views\Shared\_Pagination.cshtml.g.cs

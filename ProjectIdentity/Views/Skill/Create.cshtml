@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model Skill
+
+<div class="container col-md-offset-2">
+    <div class="row">
+        <div class="col">
+            <div class="panel justify-content-center">
+                <div class="panel-header text-center">
+                    <h2>Add a Skill</h2>
+                    <hr />
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col">
+                            <form asp-action="Create" method="post">
+
+                                <div class="form-group col">
+                                    <label asp-for="SkillName">Skill Name</label>
+                                    <input asp-for="SkillName" class="form-control" />
+                                    <span asp-validation-for="SkillName" class="text-danger"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="text-danger text-center">
+                                            @Html.Label("", Convert.ToString((string)ViewBag.Duplicate))
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col">
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <input type="submit" class="btn btn-primary" value="Create" />
+                                        <input type="reset" class="btn btn-danger" value="Cancel" />
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

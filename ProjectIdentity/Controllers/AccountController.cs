@@ -71,7 +71,7 @@ namespace ProjectIdentity.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Name,
+                    UserName = model.Email,
                     Email = model.Email,
                     EmailConfirmed = true
 

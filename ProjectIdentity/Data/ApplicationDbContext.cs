@@ -10,9 +10,10 @@ namespace ProjectIdentity.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
     }
 }
